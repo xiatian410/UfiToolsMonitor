@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      miuix-blur 在库里硬编码了 minSdk 33，但它的 AGSL 能力统一由 isRuntimeShaderSupported()
+      在运行时判断（内部实现都带 @RequiresApi(33)），本应用所有模糊/液态玻璃调用点也都按 33 判断，
+      因此放行该库的最低版本限制，让应用本体可以下探到 Android 12。
+    -->
+    <uses-sdk tools:overrideLibrary="top.yukonga.miuix.kmp.blur" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--
+      Android 17（API 37）起 targetSdk ≥ 37 的应用默认禁止访问局域网地址，
+      必须声明并在运行时申请该权限，否则连接 192.168.x.x 等设备地址只会超时。
+      Android 16 及更低版本无此权限，声明后系统忽略即可。
+    -->
+    <uses-permission android:name="android.permission.ACCESS_LOCAL_NETWORK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UfiTools"
+        tools:ignore="UnusedAttribute">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode|density|fontScale|locale|layoutDirection"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AodActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+
+        <receiver
+            android:name=".appwidget.UfiWidgetReceiver"
+            android:label="@string/widget_name_main"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_ufi_info" />
+        </receiver>
+
+        <receiver
+            android:name=".appwidget.UfiTrafficWidgetReceiver"
+            android:label="@string/widget_name_traffic"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_traffic_info" />
+        </receiver>
+
+        <receiver
+            android:name=".appwidget.UfiSignalWidgetReceiver"
+            android:label="@string/widget_name_signal"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_signal_info" />
+        </receiver>
+
+        <receiver
+            android:name=".appwidget.UfiSpeedWidgetReceiver"
+            android:label="@string/widget_name_speed"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_speed_info" />
+        </receiver>
+
+        <receiver
+            android:name=".appwidget.UfiStatusBarWidgetReceiver"
+            android:label="@string/widget_name_status_bar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_status_bar_info" />
+        </receiver>
+
+        <receiver
+            android:name=".appwidget.WidgetRefreshReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.xingyue.ufitools.monitor.action.REFRESH_WIDGET" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".service.MonitorService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+    </application>
+
+</manifest>

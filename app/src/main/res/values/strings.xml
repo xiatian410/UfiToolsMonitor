@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UFI-TOOLS-Monitor</string>
+    <!-- 桌面选择器显示名：仅「××卡 / ××条」 -->
+    <string name="widget_name_main">状态卡</string>
+    <string name="widget_name_traffic">流量条</string>
+    <string name="widget_name_signal">信号卡</string>
+    <string name="widget_name_speed">流量卡</string>
+    <string name="widget_name_status_bar">状态条</string>
+    <!-- 部分启动器的说明文案，保持简短 -->
+    <string name="widget_description">状态卡</string>
+    <string name="widget_traffic_description">流量条</string>
+    <string name="widget_signal_description">信号卡</string>
+    <string name="widget_speed_description">流量卡</string>
+    <string name="widget_status_bar_description">状态条</string>
+</resources>

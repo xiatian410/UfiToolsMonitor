@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- 外层波纹 -->
+    <path
+        android:pathData="M4.5,9.5c4.2,-3.8 10.8,-3.8 15,0"
+        android:strokeColor="#526079"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- 中层波纹 -->
+    <path
+        android:pathData="M7.5,13c2.5,-2.2 6.5,-2.2 9,0"
+        android:strokeColor="#526079"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+
+    <!-- 信号点 -->
+    <path
+        android:pathData="M12,17.5h0.01"
+        android:strokeColor="#526079"
+        android:strokeWidth="3"
+        android:strokeLineCap="round" />
+
+</vector>

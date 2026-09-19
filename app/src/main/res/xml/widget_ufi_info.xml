@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 默认 4×2；可放大适配 5×6/5×9 等大桌面，不可缩到过小 -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="250dp"
+    android:minHeight="110dp"
+    android:minResizeWidth="200dp"
+    android:minResizeHeight="100dp"
+    android:maxResizeWidth="520dp"
+    android:maxResizeHeight="320dp"
+    android:updatePeriodMillis="1800000"
+    android:initialLayout="@layout/glance_default_loading_layout"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellWidth="4"
+    android:targetCellHeight="2"
+    android:widgetCategory="home_screen"
+    android:description="@string/widget_description" />
